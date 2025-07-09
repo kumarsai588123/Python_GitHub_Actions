@@ -1,0 +1,40 @@
+  
+name: Python CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Hosted runner (switch to self-hosted if needed)
+
+    env:
+      ENV_MODE: "production"
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run tests
+        run: |
+          python -m unittest discover tests
+
+      - name: Show Secret and Env Usage
+        run: |
+          echo "Environment: $ENV_MODE"
+          echo "Secret key is set? ${{ secrets.SECRET_KEY != '' }}"
+

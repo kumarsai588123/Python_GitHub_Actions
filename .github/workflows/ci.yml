@@ -5,7 +5,7 @@ on: push
 
 jobs:
   test:
-    runs-on: ubuntu-latest  # Hosted runner (switch to self-hosted if needed)
+    runs-on: ubuntu-latest  
 
     env:
       ENV_MODE: "production"

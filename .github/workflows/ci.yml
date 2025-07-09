@@ -1,11 +1,7 @@
   
 name: Python CI/CD Pipeline
 
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+on: push
 
 jobs:
   test:

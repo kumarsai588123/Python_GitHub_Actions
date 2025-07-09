@@ -1,7 +1,7 @@
   
 name: Python CI/CD Pipeline
 
-on: push
+on: [push,workflow_dispatch]
 
 jobs:
   test:
